@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monthly Report</title>
+</head>
+<body>
+    <h2>Monthly Report for {{ month }} {{ year }}</h2>
+    <h3>Hello, {{ user.username }}</h3>
+    <p>Here are the details of the books you have lent for the month of {{ month }} {{ year }}:</p>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Book ID</th>
+                <th>Title</th>
+                <th>Lend Date</th>
+                <th>Return Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in user_books %}
+            <tr>
+                <td>{{ book.id }}</td>
+                <td>{{ book.name }}</td>
+                <td>{{ book.lend_date.strftime('%Y-%m-%d') }}</td>
+                <td>{{ book.return_date.strftime('%Y-%m-%d') if book.return_date else 'Not returned yet' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
